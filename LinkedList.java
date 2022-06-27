@@ -321,12 +321,16 @@ public class LinkedList<T>{
 		
 		if(index==0) {
 			getAsNode(size-1).setNextNode(getAsNode(1));
+		}else {
+			Node<T> previousNode = getAsNode(index-1);
+			Node<T>	nextNode= previousNode.getNextNode().getNextNode();
+			
+			previousNode.setNextNode(nextNode);	
+			
+			if(index==size-1) {
+				lastNode = previousNode;
+			}
 		}
-		
-		Node<T> previousNode = getAsNode(index-1);
-		Node<T>	nextNode= previousNode.getNextNode().getNextNode();
-		
-		previousNode.setNextNode(nextNode);
 		
 		size--;
 		
