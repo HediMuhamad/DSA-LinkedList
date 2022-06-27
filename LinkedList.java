@@ -321,15 +321,24 @@ public class LinkedList<T>{
 			return false;
 		}
 		
-		Node<T> previousNode = getAsNode(index-1);
-		Node<T>	nextNode= previousNode.getNextNode().getNextNode();
-		
-		previousNode.setNextNode(nextNode);
+		if(index==0) {
+			firstNode = getAsNode(1);
+		}else {
+			Node<T> previousNode = getAsNode(index-1);
+			Node<T>	nextNode= previousNode.getNextNode().getNextNode();
+			
+			previousNode.setNextNode(nextNode);	
+			
+			if(index==size-1) {
+				lastNode = previousNode;
+			}
+		}
 		
 		size--;
 		
 		return true;
 	}
+	
 
 	/**	Deletes all nodes at specified indexes.
 	 * @param indexes The specified indexes.
